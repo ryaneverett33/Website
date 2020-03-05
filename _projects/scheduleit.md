@@ -23,7 +23,7 @@ Schedule-It is a web application designed for easy communication and event sched
 
 ### Screenshots
 
-![Screenshot](https://i.imgur.com/38bB9P4.png)
+![Screenshot](http://i.imgur.com/38bB9P4.png)
 
 ### Contributors
 - [Kyle Burke](https://github.com/KyleNBurke)
