@@ -6,6 +6,7 @@ project_link: https://github.com/will-johnston/Schedule-It/
 demo_link: !!null
 languages: [Java, HTML, Javascript, CSS, SQL]
 technologies: [Chatterbot, Apache, MariaDB, Bootstrap, jQuery]
+screenshot: http://i.imgur.com/38bB9P4.png
 ---
 # About
 
