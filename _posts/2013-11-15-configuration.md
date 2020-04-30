@@ -8,8 +8,7 @@ fullview: true
 
 In your config file change these settings
 
-{% highlight yaml %}
-title: dbyll
+{% highlight yaml %}title: dbyll
 author:  
   name: yourname  
   email: youremail  

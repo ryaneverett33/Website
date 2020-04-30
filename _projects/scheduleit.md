@@ -6,13 +6,15 @@ project_link: https://github.com/will-johnston/Schedule-It/
 demo_link: !!null
 languages: [Java, HTML, Javascript, CSS, SQL]
 technologies: [Chatterbot, Apache, MariaDB, Bootstrap, jQuery]
-screenshot: http://i.imgur.com/38bB9P4.png
+main_screenshot: http://i.imgur.com/38bB9P4.png
+screenshots: nil
 ---
 # About
 
 Schedule-It is a web application designed for easy communication and event scheduling. This project was made for CS307 at Purdue University and was self hosted on a Raspberry Pi using a custom built RESTful API. Machine learning in Computer Science is big right now which is why this project has an integrated chatbot trained with a natural dialog.
 
 ### Features
+
 - Secure account creation and login
 - Profile picture uploading
 - Group chat for communication between all members
@@ -24,9 +26,10 @@ Schedule-It is a web application designed for easy communication and event sched
 
 ### Screenshots
 
-![Screenshot](http://i.imgur.com/38bB9P4.png)
+{% imgur http://i.imgur.com/38bB9P4.png %}
 
 ### Contributors
+
 - [Kyle Burke](https://github.com/KyleNBurke)
 - [Will Johnston](https://github.com/will-johnston)
 - [Ryan Everett](https://github.com/Changer098)

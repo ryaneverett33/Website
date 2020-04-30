@@ -2,7 +2,6 @@
 layout: page
 tagline:
 ---
-
 {% for post in paginator.posts %}
 
 <article class="home">
@@ -11,10 +10,10 @@ tagline:
     {% assign d = post.date | date: "%d" | plus:'0' %}
     {{ post.date | date: "%B" }}
     {% case d %}
-    {% when 1 or 21 or 31 %}{{ d }}st,
-    {% when 2 or 22 %}{{ d }}nd,
-    {% when 3 or 23 %}{{ d }}rd,
-    {% else %}{{ d }}th,
+      {% when 1 or 21 or 31 %}{{ d }}st,
+      {% when 2 or 22 %}{{ d }}nd,
+      {% when 3 or 23 %}{{ d }}rd,
+      {% else %}{{ d }}th,
     {% endcase %}
     {{ post.date | date: "%Y" }}
   </span>
@@ -25,50 +24,41 @@ tagline:
 
   <div>
     {% if post.fullview %}
-    {{ post.content }}
-    {% else %}
-    {% if post.shortinfo %}
-    {{ post.shortinfo }}
-    {% elsif post.description %}
-    {{ post.description }}
-    {% else %}
-    {{ post.excerpt }}
-    {% endif %}
+      {{ post.content }}
+      {% else %}
+        {% if post.shortinfo %}
+          {{ post.shortinfo }}
+        {% elsif post.description %}
+          {{ post.description }}
+        {% else %}
+          {{ post.excerpt }}
+        {% endif %}
     {% endif %}
   </div>
 
 </article>
 {% endfor %}
-<hr/>
+<hr />
 
-<ul class="pager"> 
 
-  {% if paginator.previous_page %}
-  <li class="previous">
-    {% if paginator.previous_page == 1 %}
-    <a href="{{ site.BASE_PATH }}/">&larr; Newer</a>
-    {% else %}
-    <a href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.previous_page }}">&larr; Newer</a>
-    {% endif %}
-  </li>
-  {% else %}
-  <li class="previous disabled">
-    <a>&larr; Newer</a>
-  </li>
-  {% endif %}
-  
-  <li>
-    <span class="page_number">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-  </li>
-
-  {% if paginator.next_page %}
-  <li class="next">
-    <a href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.next_page }}">Older &rarr;</a>
-  </li>
-  {% else %}
-  <li class="next disabled">
-    <a>Older &rarr;</a>        
-  </li>
-  {% endif %}
-
-</ul>
+<nav aria-label="">
+  <ul class="pagination justify-content-center">
+    <li {% if paginator.previous_page %} class="page-item" {% else %} class="page-item disabled" {% endif %} >
+      {% if paginator.previous_page %}
+        <a class="page-link" href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.previous_page }}" tabindex="-1">&larr; Newer</a>
+      {% else %}
+        <a class="page-link disabled" href="{{ site.BASE_PATH }}/" tabindex="-1">&larr; Newer</a>
+      {% endif %}
+    </li>
+    <li class="page-item">
+      <span class="page-link page_number">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    </li>
+    <li {% if paginator.next_page %} class="page-item" {% else %} class="page-item disabled" {% endif %}>
+      {% if paginator.next_page %}
+        <a class="page-link" href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.next_page }}">Older &rarr;</a>
+      {% else %}
+      <a class="page-link disabled" href="{{ site.BASE_PATH }}/">Older &rarr;</a>
+      {% endif %}
+    </li>
+  </ul>
+</nav>

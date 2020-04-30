@@ -6,28 +6,31 @@ group: navigation
 ---
 <h1>Projects</h1>
 {% assign projects = (site.projects | sort: 'class_project') | reverse %} 
-{% assign title = "hello world" %}
 {% for project in projects %}
     <h2>{{ project.title }}
     {% if project.class_project %}
         <div class="purdue-logo-sm"></div>
     {% endif %}
-</h2>
-{% if project.screenshot %}
-{% if project.screenshot contains 'imgur' %}
-{% imgur project.screenshot show_info:false %}
-{% else %}
-<img src="{{ project.screenshot }}" height="300" alt="{{ project.title }} Screenshot" />
-</br>
-{% endif %}
-{% endif %}
-</br>
-<!--<i class="fas fa-link"></i><a href="{{ project.url }}">Project Link</a>-->
-<a href="{{ project.url }}"><button class="btn btn-default"><i class="fas fa-link"></i> Project Post</button></a>
-{% if project.project_link %}
-<a href="{{ project.project_link }}" target="blank"><button class="btn btn-default"><i class="fab fa-github"></i> Project Source Page</button></a>
-{% endif %}
-{% if project.demo_link %}
-<a href="{{ project.demo_link }}" target="blank"><button class="btn btn-default"><i class="fas fa-link"></i> Project Demo</button></a>
-{% endif %}
+    </h2>
+    {% if project.languages %}
+    {% assign languages = project.languages | array_to_sentence_string %}
+        <p><i>{{ languages }}</i></p>
+    {% endif %}
+    {% if project.main_screenshot %}
+        {% if project.main_screenshot contains 'imgur' %}
+            {% imgur project.main_screenshot show_info:false %}
+        {% else %}
+            <img src="{{ project.main_screenshot }}" height="300" alt="{{ project.title }} Screenshot" />
+        </br>
+        {% endif %}
+    {% endif %}
+    </br>
+    <!--<i class="fas fa-link"></i><a href="{{ project.url }}">Project Link</a>-->
+    <a href="{{ project.url }}"><button class="btn btn-outline-primary"><i class="fas fa-link"></i> Project Post</button></a>
+    {% if project.project_link %}
+        <a href="{{ project.project_link }}" target="blank"><button class="btn btn-outline-secondary"><i class="fab fa-github"></i> Project Source Page</button></a>
+    {% endif %}
+    {% if project.demo_link %}
+        <a href="{{ project.demo_link }}" target="blank"><button class="btn btn-outline-secondary"><i class="fas fa-link"></i> Project Demo</button></a>
+    {% endif %}
 {% endfor %}

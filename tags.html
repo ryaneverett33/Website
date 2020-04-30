@@ -12,6 +12,7 @@ group: navigation
   {% assign alldocs = alldocs | push: post %}
 {%- endfor -%}
 
+{% comment %}
 <div class="col-sm-3 col-xs-6">
   <ul class="nav nav-tabs-vertical cat-tag-menu">
   {% assign grouptag =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by: tag %}
@@ -39,6 +40,41 @@ group: navigation
       </ul>
     </div>
     {%- endfor -%}
+</div>
+{% endcomment %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-auto">
+      <ul class="nav nav-pills flex-column cat-tag-menu">
+        {% assign grouptag =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by: tag %}
+        {%- for tag in grouptag -%}
+            <li class="nav-item">
+              <a href="#{{ tag.name | replace:' ','-' }}-ref" class="nav-link">
+                {{ tag.name }}<span class="badge pull-right">{{ tag.size }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    <div class="col-6">
+      <div class="tab-content">
+        {% assign grouptag =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by: tag %}
+        {%- for tag in grouptag -%}
+          <div class="tab-pane" id="{{ tag.name | replace:' ','-' }}-ref">
+            <h2 style="margin-top: 0px">Stuff tagged  with {{ tag.name }}</h2>
+            <ul class="list-unstyled">
+              {%- for document in alldocs -%}
+                {% if document.tags contains tag.name %}
+                    <li style="line-height: 35px;"><a href="{{ site.BASE_PATH }}{{document.url}}">{{document.title}}</a><span class="text-muted">- {{ document.date | date: "%B %d, %Y" }}</span></li>
+                {% endif %}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="clearfix"></div>

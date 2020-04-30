@@ -8,6 +8,7 @@ markdown: kramdown
 disqus: !!null
 google_analytics: !!null
 title: Ryan Everett
+host: 0.0.0.0
 
 defaults:
   -

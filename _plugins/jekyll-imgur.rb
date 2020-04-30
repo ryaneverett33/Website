@@ -28,6 +28,13 @@ module Jekyll
     def parse_args(context)
       split = @content.split
       @url = context[split[0]]
+      if context[split[0]] != nil
+        @url = context[split[0]]
+      elsif split[0] != nil
+        @url = split[0]
+      else
+        raise "No url given!"
+      end
       i = 1
       endnum = split.length
       while i < endnum
@@ -51,26 +58,24 @@ module Jekyll
       image_regex = @url.scan(/\/(\w+)/)
       direct_link_regex = @url.scan(/(\w+)(\.\w+)/)
       if gallery_regex and gallery_regex.length != 0
-        puts "gallery"
+        #puts "gallery"
         is_album = true
         id = gallery_regex[0][1]
       elsif album_regex and album_regex.length != 0
-        puts "album"
+        #puts "album"
         is_album = true
         id = gallery_regex[0][1]
       elsif direct_link_regex and direct_link_regex.length != 0
-        puts "direct"
+        #puts "direct"
         is_album = false
         id = image_regex[1][0]
       elsif image_regex and image_regex.length != 0
-        puts "image"
+        #puts "image"
         is_album = false
         id = image_regex[1]
       else
         raise 'Unable to parse imgur link'
       end
-      puts "show info: #{@show_info}"
-      puts "title: #{@title}"
       <<-HTML.gsub /^\s+/, '' # remove whitespaces from heredocs
       <blockquote class="imgur-embed-pub" lang="en" data-id="#{if is_album then 'a/' end}#{id}" data-context="#{@show_info}">
       <a href="//imgur.com/#{if is_album then 'a/' end}#{id}">#{@title}</a></blockquote>

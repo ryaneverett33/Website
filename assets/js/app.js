@@ -32,9 +32,20 @@
 
     // initial activation
     activateTab();
+
+    // sidebar-sm init
+    $("#sidebar-expand-menu").hide();
   };
 
   // run init on document ready
   $(document).ready(init);
 
 })(jQuery);
+
+function sidebarExpandBtn() {
+  var sidebar = $("#sidebar-expand-menu");
+  if (sidebar.is(':hidden'))
+    sidebar.show();
+  else
+    sidebar.hide();
+}
