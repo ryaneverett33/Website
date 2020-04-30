@@ -1,6 +1,19 @@
 dbyll
 =====
 
+# Changes  
+This fork contains several changes to the original repo. Some changes are for personal preference while others are necessary upgrades. The changes are listed here:  
+- Upgrade to bootstrap 4
+- Rework Tags/categories to support bootstrap 4
+- Include [highlight.js](https://highlightjs.org/) to support more languages
+- Disqus disabled
+- Added plugins (_plugins)  
+    - Embed imgur links
+    - Carousel generator from screenshots
+    - Framework linker
+
+# Original
+
 Open source stylish, minimalistic theme for jekyll.  
 Demo: http://dbtek.github.io/dbyll/
 
