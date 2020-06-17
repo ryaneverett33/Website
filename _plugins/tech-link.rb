@@ -23,8 +23,15 @@ module Jekyll
           "socket.io" => 'https://socket.io/',
           "node.js" => "https://nodejs.org/",
           "unity3d" => 'https://unity.com/',
-          'paramiko' => 'http://www.paramiko.org/',
-          'beautifulsoup4' => 'https://www.crummy.com/software/BeautifulSoup/'
+          "paramiko" => 'http://www.paramiko.org/',
+          "beautifulsoup4" => 'https://www.crummy.com/software/BeautifulSoup/',
+          "asp.net" => 'https://dotnet.microsoft.com/apps/aspnet',
+          "raspberry pi" => 'https://www.raspberrypi.org/',
+          "flask" => 'https://flask.palletsprojects.com/',
+          "ffmpeg" => 'https://www.ffmpeg.org/',
+          "express" => 'https://expressjs.com/',
+          "mysql" => 'https://www.mysql.com/',
+          "android" => 'https://www.android.com'
         }
       end
   

@@ -4,7 +4,7 @@ layout: project
 class_project: no
 project_link: https://github.com/Changer098/larry
 demo_link: !!null
-languages: [python 2]
+languages: [Python 2]
 technologies: [BeautifulSoup4, Paramiko]
 main_screenshot: https://raw.githubusercontent.com/Changer098/larry/master/screenshots/main.PNG
 screenshots:
