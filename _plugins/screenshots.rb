@@ -61,7 +61,7 @@ module Jekyll
                     <img class="d-block w-100" src="#{screenshot['img']}" alt="#{ordinalize(i).capitalize} slide">
                   HTML
                 else
-                  url = "/assets/projects/#{@project_name}/#{screenshot['img']}"
+                  url = "/assets/projects/#{@project_name}/screenshots/#{screenshot['img']}"
                   str += <<-HTML
                     <img class="d-block w-100" src="#{URI::encode(url)}" alt="#{ordinalize(i).capitalize} slide">
                   HTML
