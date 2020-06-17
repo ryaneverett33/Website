@@ -7,7 +7,7 @@ demo_link: !!null
 languages: [Java, HTML, Javascript, CSS, SQL]
 technologies: [Chatterbot, Apache, MariaDB, Bootstrap, jQuery]
 main_screenshot: http://i.imgur.com/38bB9P4.png
-screenshots: nil
+screenshots: !!null
 ---
 # About
 
@@ -26,7 +26,7 @@ Schedule-It is a web application designed for easy communication and event sched
 
 ### Screenshots
 
-{% imgur http://i.imgur.com/38bB9P4.png %}
+{% imgur https://i.imgur.com/38bB9P4.png %}
 
 ### Contributors
 

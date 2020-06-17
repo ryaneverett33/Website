@@ -1,103 +1,37 @@
 <div class="page-header">
-    <h1>{{ page.title }} {% if page.class_project %}<div class="purdue-logo-sm"></div>{% endif %}</h1>
-    {% if page.project_link %}
-      <a href="{{page.project_link}}" target="_blank">
-        <button class="btn btn-outline-primary">
-        {% if page.project_link contains 'github' %}
-          <i class="fab fa-github"></i>
-        {% endif %}
-        Project Link
-        </button>
-      </a>
-    {% endif %}
-    {% if page.demo_link %}
-        <a href="{{page.demo_link}}" target="_blank">
-          <button class="btn btn-outline-secondary">
-            <i class="fas fa-link"></i> Demo Link
-          </button>
-        </a>
-    {% endif %}
-      {% if page.languages %}
-        <p class="project-languages">Languages: <i>{{ page.languages | array_to_sentence_string }}</i></p>
+  <h1>{{ page.title }} {% if page.class_project %}<div class="purdue-logo-sm"></div>{% endif %}</h1>
+  {% if page.project_link %}
+  <a href="{{page.project_link}}" target="_blank">
+    <button class="btn btn-outline-primary">
+      {% if page.project_link contains 'github' %}
+      <i class="fab fa-github"></i>
       {% endif %}
-    {% if page.technologies %}
-        <!--<p  class="project-tech">{{ page.technologies | array_to_sentence_string }}</p>-->
-        Technologies: {% tech_links page.technologies %}
-    {% endif %}
-    </div>
-    <article>
-      <div class="article_body">
-        {{ content }}
-        </div>
-        {% if page.screenshots %}
-          <h3>Screenshots</h3>
-          {% screenshots page.screenshots page.title %}
-        {% endif %}
-    </article>
-      
-  <!--<article>
-  
-      <div class="col-sm-12">
-        <div class="article_body">
-        {{ content }}
-        </div>
-        {% if page.screenshots %}
-          {% screenshots page.screenshots page.title %}
-        {% endif %}
-          {% unless page.tags == empty %}
-          <ul class="list-inline">
-            <li><i class="fa fa-tags"></i></li>
-            {% assign tags_list = page.tags %}
-            {% if tags_list.first[0] == null %}
-              {% for tag in tags_list %} 
-                  <li>
-                      <a href="{{ site.BASE_PATH }}/{{ site.tags_path }}#{{ tag }}-ref">
-                      {{ tag }}
-                      {% unless forloop.last %},{% endunless %}
-                      </a>
-                  </li>
-              {% endfor %}
-            {% else %}
-              {% for tag in tags_list %} 
-                  <li>
-                      <a href="{{ site.BASE_PATH }}/{{ site.tags_path }}#{{ tag[0] }}-ref">
-                          {{ tag[0] }}
-                          {% unless forloop.last %},{% endunless %}
-                      </a>
-                  </li>
-                 
-              {% endfor %}
-            {% endif %}
-            {% assign tags_list = nil %}
-          </ul>
-          {% endunless %}  
-  
-          <hr>
-  
-          <div>
-            <section class="share col-sm-6">
-              <h4 class="section-title">Share Post</h4>
-              <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text={{page.title | encode}}{% if site.author.twitter%}&via={{site.author.twitter}}{% endif %}"
-                 onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                <i class="fab fa-twitter"></i>
-                Twitter
-              </a>
-              <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
-                 onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                <i class="fab fa-facebook"></i>
-                Facebook
-          </a>
-          <a class="btn btn-default btn-sm facebook" href="http://www.reddit.com/submit?url={{page.url | absolute_url}}&title={{page.title}}"
-                 onclick="window.open(this.href, 'facebook-share','width=600,height=600');return false;">
-                <i class="fab fa-reddit"></i>
-                Reddit
-              </a>
-            </section>
-      </div>
-      
-      <div class="col-sm-2 sidebar-2">
-      
-      </div>
-  </article>-->
-  <div class="clearfix"></div>
-  
+      Project Link
+    </button>
+  </a>
+  {% endif %}
+  {% if page.demo_link %}
+  <a href="{{page.demo_link}}" target="_blank">
+    <button class="btn btn-outline-secondary">
+      <i class="fas fa-link"></i> Demo Link
+    </button>
+  </a>
+  {% endif %}
+  {% if page.languages %}
+  <p class="project-languages">Languages: <i>{{ page.languages | array_to_sentence_string }}</i></p>
+  {% endif %}
+  {% if page.technologies %}
+  <!--<p  class="project-tech">{{ page.technologies | array_to_sentence_string }}</p>-->
+  Technologies: {% tech_links page.technologies %}
+  {% endif %}
+</div>
+<article>
+  <div class="article_body">
+    {{ content }}
+  </div>
+  {% if page.screenshots %}
+  <h3>Screenshots</h3>
+  {% screenshots page.screenshots page.title %}
+  {% endif %}
+</article>
+<div class="clearfix"></div>
