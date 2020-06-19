@@ -4,33 +4,102 @@ title: Projects
 header: Projects
 group: navigation
 ---
-<h1>Projects</h1>
-{% assign projects = (site.projects | sort: 'class_project') | reverse %} 
-{% for project in projects %}
-    <h2>{{ project.title }}
-    {% if project.class_project %}
-        <div class="purdue-logo-sm"></div>
-    {% endif %}
-    </h2>
-    {% if project.languages %}
-    {% assign languages = project.languages | array_to_sentence_string %}
-        <p><i>{{ languages }}</i></p>
-    {% endif %}
-    {% if project.main_screenshot %}
-        {% if project.main_screenshot contains 'imgur' %}
-            {% imgur project.main_screenshot show_info:false %}
-        {% else %}
-            <img src="{{ project.main_screenshot }}" height="300" alt="{{ project.title }} Screenshot" />
-        </br>
-        {% endif %}
-    {% endif %}
-    </br>
-    <!--<i class="fas fa-link"></i><a href="{{ project.url }}">Project Link</a>-->
-    <a href="{{ project.url }}"><button class="btn btn-outline-primary"><i class="fas fa-link"></i> Project Post</button></a>
-    {% if project.project_link %}
-        <a href="{{ project.project_link }}" target="blank"><button class="btn btn-outline-secondary"><i class="fab fa-github"></i> Project Source Page</button></a>
-    {% endif %}
-    {% if project.demo_link %}
-        <a href="{{ project.demo_link }}" target="blank"><button class="btn btn-outline-secondary"><i class="fas fa-link"></i> Project Demo</button></a>
-    {% endif %}
-{% endfor %}
+{% assign class_projects = site.projects | where:"class_project", true %}
+{% assign work_projects = site.projects | where:"work_project", true %}
+{% assign personal_projects = site.projects | where:"class_project", false
+                                            | where:"work_project", false %}
+{% assign class_projects = class_projects | sort_natural:"title" %}
+{% assign work_projects = work_projects | sort_natural:"title" %}
+{% assign personal_projects = personal_projects | sort_natural:"title" %}
+
+<ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-personal-tab" data-toggle="pill" href="#pills-personal" role="tab" aria-controls="pills-personal" aria-selected="true">Personal Projects</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-class-tab" data-toggle="pill" href="#pills-class" role="tab" aria-controls="pills-class" aria-selected="false">Class Projects</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-work-tab" data-toggle="pill" href="#pills-work" role="tab" aria-controls="pills-work" aria-selected="false">Work Projects</a>
+    </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-personal" role="tabpanel" aria-labelledby="pills-personal-tab">
+        {% for project in personal_projects %}
+            <h2>{{ project.title }}{% if project.wip %}<p class="wip">[WIP]</p>{% endif %}</h2>
+            {% if project.languages %}
+            {% assign languages = project.languages | array_to_sentence_string %}
+                <p><i>{{ languages }}</i></p>
+            {% endif %}
+            {% if project.main_screenshot %}
+                {% if project.main_screenshot contains 'imgur' %}
+                    {% imgur project.main_screenshot show_info:false %}
+                {% else %}
+                    <img src="{{ project.main_screenshot }}" height="300" alt="{{ project.title }} Screenshot" />
+                </br>
+                {% endif %}
+            {% endif %}
+            </br>
+            <a href="{{ project.url }}"><button class="btn btn-outline-primary"><i class="fas fa-link"></i> Project Post</button></a>
+            {% if project.project_link %}
+                <a href="{{ project.project_link }}" target="blank"><button class="btn btn-outline-secondary"><i class="fab fa-github"></i> Project Source Page</button></a>
+            {% endif %}
+            {% if project.demo_link %}
+                <a href="{{ project.demo_link }}" target="blank"><button class="btn btn-outline-secondary"><i class="fas fa-link"></i> Project Demo</button></a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="tab-pane fade" id="pills-class" role="tabpanel" aria-labelledby="pills-class-tab">
+        {% for project in class_projects %}
+            <h2>{{ project.title }}
+                {% if project.wip %}<p class="wip">[WIP]</p>{% endif %}
+                <div class="purdue-logo-sm"></div>
+            </h2>
+            {% if project.languages %}
+            {% assign languages = project.languages | array_to_sentence_string %}
+                <p><i>{{ languages }}</i></p>
+            {% endif %}
+            {% if project.main_screenshot %}
+                {% if project.main_screenshot contains 'imgur' %}
+                    {% imgur project.main_screenshot show_info:false %}
+                {% else %}
+                    <img src="{{ project.main_screenshot }}" height="300" alt="{{ project.title }} Screenshot" />
+                </br>
+                {% endif %}
+            {% endif %}
+            </br>
+            <a href="{{ project.url }}"><button class="btn btn-outline-primary"><i class="fas fa-link"></i> Project Post</button></a>
+            {% if project.project_link %}
+                <a href="{{ project.project_link }}" target="blank"><button class="btn btn-outline-secondary"><i class="fab fa-github"></i> Project Source Page</button></a>
+            {% endif %}
+            {% if project.demo_link %}
+                <a href="{{ project.demo_link }}" target="blank"><button class="btn btn-outline-secondary"><i class="fas fa-link"></i> Project Demo</button></a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="tab-pane fade" id="pills-work" role="tabpanel" aria-labelledby="pills-work-tab">
+        {% for project in work_projects %}
+            <h2>{{ project.title }}{% if project.wip %}<p class="wip">[WIP]</p>{% endif %}</h2>
+            {% if project.languages %}
+            {% assign languages = project.languages | array_to_sentence_string %}
+                <p><i>{{ languages }}</i></p>
+            {% endif %}
+            {% if project.main_screenshot %}
+                {% if project.main_screenshot contains 'imgur' %}
+                    {% imgur project.main_screenshot show_info:false %}
+                {% else %}
+                    <img src="{{ project.main_screenshot }}" height="300" alt="{{ project.title }} Screenshot" />
+                </br>
+                {% endif %}
+            {% endif %}
+            </br>
+            <a href="{{ project.url }}"><button class="btn btn-outline-primary"><i class="fas fa-link"></i> Project Post</button></a>
+            {% if project.project_link %}
+                <a href="{{ project.project_link }}" target="blank"><button class="btn btn-outline-secondary"><i class="fab fa-github"></i> Project Source Page</button></a>
+            {% endif %}
+            {% if project.demo_link %}
+                <a href="{{ project.demo_link }}" target="blank"><button class="btn btn-outline-secondary"><i class="fas fa-link"></i> Project Demo</button></a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

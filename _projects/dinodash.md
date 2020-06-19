@@ -2,6 +2,8 @@
 title: Dino Dash
 layout: project
 class_project: yes
+work_project: no
+wip: no
 project_link: https://github.com/Changer098/CS252-lab6
 demo_link: !!null
 languages: [JS, HTML, CSS, SQL]

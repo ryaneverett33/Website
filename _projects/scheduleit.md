@@ -2,11 +2,13 @@
 title: Schedule-It
 layout: project
 class_project: yes
+work_project: no
+wip: no
 project_link: https://github.com/will-johnston/Schedule-It/
 demo_link: !!null
 languages: [Java, HTML, Javascript, CSS, SQL]
 technologies: [Chatterbot, Apache, MariaDB, Bootstrap, jQuery]
-main_screenshot: http://i.imgur.com/38bB9P4.png
+main_screenshot: https://i.imgur.com/38bB9P4.png
 screenshots: !!null
 ---
 # About

@@ -4,15 +4,15 @@ class YouTube < Liquid::Tag
   def initialize(tagName, markup, tokens)
     super
 
-    if markup =~ Syntax then
+    if markup =~ Syntax
       @id = $1
 
-      if $2.nil? then
-          @width = 560
-          @height = 420
+      if $2.nil?
+        @width = 560
+        @height = 420
       else
-          @width = $2.to_i
-          @height = $3.to_i
+        @width = $2.to_i
+        @height = $3.to_i
       end
     else
       raise "No YouTube ID provided in the \"youtube\" tag"

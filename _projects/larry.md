@@ -2,24 +2,26 @@
 title: larry
 layout: project
 class_project: no
+work_project: yes
+wip: no
 project_link: https://github.com/Changer098/larry
 demo_link: !!null
 languages: [Python 2]
 technologies: [BeautifulSoup4, Paramiko]
-main_screenshot: https://raw.githubusercontent.com/Changer098/larry/master/screenshots/main.PNG
+main_screenshot: /assets/projects/larry/screenshots/main.PNG
 screenshots:
-    - img: https://raw.githubusercontent.com/Changer098/larry/master/screenshots/main.PNG
+    - img: main.PNG
       title: Main screen
-      external: true
-    - img: https://raw.githubusercontent.com/Changer098/larry/master/screenshots/do-ticket.PNG
+      external: false
+    - img: do-ticket.PNG
       title: Doing a Ticket
-      external: true
-    - img: https://raw.githubusercontent.com/Changer098/larry/master/screenshots/verify-ticket.PNG
+      external: false
+    - img: verify-ticket.PNG
       title: Verifying a Ticket
-      external: true
+      external: false
 
 ---
-![logo](https://raw.githubusercontent.com/Changer098/larry/master/screenshots/icon-small.jpg)
+<div>{% logo "/assets/projects/larry/images/icon-small.jpg" %}</div>
 
 # About
 

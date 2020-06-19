@@ -4,8 +4,8 @@ module Jekyll
       super
       @content = content
       @show_info = true
-      @title = ''
-      @url = ''
+      @title = ""
+      @url = ""
     end
 
     # Method to convert string to bool (which is dumb ruby doesn't have this in the first place)
@@ -17,9 +17,9 @@ module Jekyll
     # Assign instance variables their values from parsed args
     # If key is invalid, it's ignored
     def assign_key_value(key, value)
-      if key == 'show_info'
+      if key == "show_info"
         @show_info = true?(value)
-      elsif key == 'title'
+      elsif key == "title"
         @title = value
       end
     end
@@ -38,7 +38,7 @@ module Jekyll
       i = 1
       endnum = split.length
       while i < endnum
-        key_value = split[i].split(':')
+        key_value = split[i].split(":")
         if key_value.length == 2
           key = key_value[0]
           value = context[key_value[1]]
@@ -74,15 +74,15 @@ module Jekyll
         is_album = false
         id = image_regex[1]
       else
-        raise 'Unable to parse imgur link'
+        raise "Unable to parse imgur link"
       end
-      <<-HTML.gsub /^\s+/, '' # remove whitespaces from heredocs
-      <blockquote class="imgur-embed-pub" lang="en" data-id="#{if is_album then 'a/' end}#{id}" data-context="#{@show_info}">
-      <a href="//imgur.com/#{if is_album then 'a/' end}#{id}">#{@title}</a></blockquote>
-      <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+      <<-HTML.gsub /^\s+/, "" # remove whitespaces from heredocs
+      <blockquote class="imgur-embed-pub" lang="en" data-id="#{if is_album then "a/" end}#{id}" data-context="#{@show_info}">
+      <a href="https://imgur.com/#{if is_album then "a/" end}#{id}">#{@title}</a></blockquote>
+      <script async src="https://s.imgur.com/min/embed.js" charset="utf-8"></script>
       HTML
     end
 
-    Liquid::Template.register_tag('imgur', Jekyll::ImgurEmbed)
+    Liquid::Template.register_tag("imgur", Jekyll::ImgurEmbed)
   end
 end

@@ -2,6 +2,8 @@
 title: noted
 layout: project
 class_project: yes
+work_project: no
+wip: no
 project_link: https://github.com/will-johnston/noted/tree/master/electron
 demo_link: !!null
 languages: [Java, Typescript, HTML, CSS]
@@ -34,3 +36,15 @@ noted is an application to make note-taking and note-sharing easier. The app run
 - Record audio alongside your note taking in case you need to go back in time
 - Google login
 - Uses Material Design and includes a Dark Mode
+
+### Contributors
+
+#### Android
+
+- [Kyle Burke](https://github.com/KyleNBurke)
+- [Will Johnston](https://github.com/will-johnston)
+
+#### Electron
+
+- [Ryan Everett](https://github.com/Changer098)
+- [Bryan Battles](https://github.com/babattles)
