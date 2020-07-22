@@ -1,0 +1,11 @@
+- fix next/prev buttons on white backgrounds
+- Fix tags
+- Fix screenshot sizes in christmaspi
+
+Projects:
+- pymv
+- ssh2ser
+
+Features:
+- Add related blog entries to projects
+    - Project page should match blog entries to a given category or tag
