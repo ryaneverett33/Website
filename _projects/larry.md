@@ -9,6 +9,7 @@ demo_link: !!null
 languages: [Python 2]
 technologies: [BeautifulSoup4, Paramiko]
 main_screenshot: /assets/projects/larry/screenshots/main.PNG
+category: demo
 screenshots:
     - img: main.PNG
       title: Main screen

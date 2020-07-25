@@ -34,4 +34,30 @@
   {% screenshots page.screenshots page.title %}
   {% endif %}
 </article>
+{% unless page.category == nil %}
+{% assign post_links = '' | split: '' %}
+{% assign post_titles = '' | split: '' %}
+{% assign post_descriptions = '' | split: '' %}
+{% assign post_count = 0 %}
+{% for category in site.categories %}
+  {% if category[0] == page.category %}
+    {% for category_info in category[1] %}
+      {% assign post_count = post_count | plus: 1 %}
+      {% assign url = category_info.url | split: '`' %}
+      {% assign title = category_info.title | split: '`' %}
+      {% assign description = category_info.description | split: '`' %}
+      {% assign post_links = post_links | concat: url %}
+      {% assign post_titles = post_titles | concat: title %}
+      {% assign post_descriptions = post_descriptions | concat: description %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+<h4>Related blog posts: <a href="{{ site.BASE_PATH }}/{{ site.categories_path }}#{{ page.category }}-ref">All Posts</a></h4>
+<h5>Recent posts</h5>
+{% for title in post_titles limit:5 %}
+  {% assign index = forloop.index | minus: 1 %}
+  <h4><a href="{{ post_links[forloop.index] }}">{{ post_titles[index] }}</a></h4>
+  <p>{{ post_descriptions[index] }}</p>
+{% endfor %}
+{% endunless %}
 <div class="clearfix"></div>

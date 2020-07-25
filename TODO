@@ -6,7 +6,8 @@ Projects:
 - listassist
 
 Features:
-- Add related blog entries to projects
-    - Project page should match blog entries to a given category or tag
+- Add related blog entries to projects /
+    - Project page should match blog entries to a given category or tag /
+    - Clean up to make it look less ugly
 - Add about page
 - Add 404 page
