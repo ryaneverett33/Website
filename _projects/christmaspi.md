@@ -6,6 +6,7 @@ work_project: no
 wip: yes
 project_link: https://github.com/Changer098/christmaspi
 demo_link: !!null
+category: !!null
 languages: [C#, C, HTML, CSS, JS]
 technologies: [ASP.Net, Raspberry Pi]
 main_screenshot: /assets/projects/christmaspi/screenshots/setup_main.png

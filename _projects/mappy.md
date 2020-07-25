@@ -6,6 +6,7 @@ work_project: yes
 wip: no
 project_link: https://github.com/Changer098/mappy/
 demo_link: !!null
+category: !!null
 languages: [Python 2]
 technologies: [flask, jQuery, bootstrap]
 main_screenshot: /assets/projects/mappy/screenshots/main.PNG

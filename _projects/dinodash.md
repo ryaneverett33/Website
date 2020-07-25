@@ -6,6 +6,7 @@ work_project: no
 wip: no
 project_link: https://github.com/Changer098/CS252-lab6
 demo_link: !!null
+category: !!null
 languages: [JS, HTML, CSS, SQL]
 technologies: [Node.js, Socket.io, MSSQL, Azure, Bootstrap, jQuery]
 main_screenshot: /assets/projects/dinodash/screenshots/main.jpg

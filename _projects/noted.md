@@ -6,6 +6,7 @@ work_project: no
 wip: no
 project_link: https://github.com/will-johnston/noted/tree/master/electron
 demo_link: !!null
+category: !!null
 languages: [Java, Typescript, HTML, CSS]
 technologies: [Android, Electron, Firebase, Angular]
 main_screenshot: /assets/projects/noted/screenshots/homescreen.PNG

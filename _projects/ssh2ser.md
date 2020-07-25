@@ -6,6 +6,7 @@ work_project: no
 wip: yes
 project_link: https://github.com/Changer098/ssh2ser
 demo_link: !!null
+category: !!null
 languages: [Python]
 technologies: [Paramiko]
 main_screenshot: !!null
