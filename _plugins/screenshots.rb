@@ -80,11 +80,15 @@ module Jekyll
       str += <<-HTML
         </div>
         <a class="carousel-control-prev" href="##{@project_name.gsub " ", ""}Indicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <button class="btn btn-dark carousel-btn" aria-hidden="true">
+          <i class="fas fa-chevron-left"></i>
+          </button>
           <span class="sr-only">Previous</span>
         </a>
         <a class="carousel-control-next" href="##{@project_name.gsub " ", ""}Indicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <button class="btn btn-dark carousel-btn" aria-hidden="true">
+          <i class="fas fa-chevron-right"></i>
+          </button>
           <span class="sr-only">Next</span>
         </a>
         </div>

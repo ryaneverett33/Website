@@ -1,6 +1,9 @@
-- fix next/prev buttons on white backgrounds
-- Fix tags
 - Fix screenshot sizes in christmaspi
+- maybe fix tag sizes in blog posts?
+- screenshots go fullscreen
+
+Projects:
+- listassist
 
 Features:
 - Add related blog entries to projects

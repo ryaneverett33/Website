@@ -12,46 +12,28 @@ group: navigation
   {% assign alldocs = alldocs | push: post %}
 {%- endfor -%}
 
-{% comment %}
-<div class="col-sm-3 col-xs-6">
-  <ul class="nav nav-tabs-vertical cat-tag-menu">
-  {% assign grouptag =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by: tag %}
-  {%- for tag in grouptag -%}
-      <li>
-        <a href="#{{ tag.name | replace:' ','-' }}-ref">
-          {{ tag.name }}<span class="badge pull-right">{{ tag.size }}</span>
-      </a>
-    </li>
-  {%- endfor -%}
-</ul>
-</div>
-<!-- Tab panes -->
-<div class="tab-content col-sm-9 col-xs-6">
-  {% assign grouptag =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by: tag %}
-  {%- for tag in grouptag -%}
-    <div class="tab-pane" id="{{ tag.name | replace:' ','-' }}-ref">
-      <h2 style="margin-top: 0px">Stuff tagged  with {{ tag.name }}</h2>
-      <ul class="list-unstyled">
-        {%- for document in alldocs -%}
-          {% if document.tags contains tag.name %}
-              <li style="line-height: 35px;"><a href="{{ site.BASE_PATH }}{{document.url}}">{{document.title}}</a><span class="text-muted">- {{ document.date | date: "%B %d, %Y" }}</span></li>
-          {% endif %}
-        {%- endfor -%}
-      </ul>
-    </div>
-    {%- endfor -%}
-</div>
-{% endcomment %}
-
+{% assign grouptags =  alldocs | map: 'tags' | join: ','  | split: ',' %}
+{% assign grouptags = grouptags | uniq %}
+{% assign tag_sizes = '' | split: '' %}
+{% for tag in grouptags %}
+  {% assign count = 0 %}
+  {% for document in alldocs %}
+    {% if document.tags contains tag %}
+      {% assign count = count | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+  {% assign count = count | split: '' %}
+  {% assign tag_sizes = tag_sizes | concat: count %}
+{% endfor %}
 <div class="container">
   <div class="row">
     <div class="col-auto">
       <ul class="nav nav-pills flex-column cat-tag-menu">
-        {% assign grouptag =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by: tag %}
-        {%- for tag in grouptag -%}
+        {%- for tag in grouptags -%}
             <li class="nav-item">
-              <a href="#{{ tag.name | replace:' ','-' }}-ref" class="nav-link">
-                {{ tag.name }}<span class="badge pull-right">{{ tag.size }}</span>
+              <a href="#{{ tag | replace:' ','-' }}-ref" class="nav-link">
+                {% assign index = forloop.index | minus: 1 %}
+                {{ tag }}<span class="badge pull-right">{{ tag_sizes[index] }}</span>
             </a>
           </li>
         {%- endfor -%}
@@ -59,13 +41,12 @@ group: navigation
     </div>
     <div class="col-6">
       <div class="tab-content">
-        {% assign grouptag =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by: tag %}
-        {%- for tag in grouptag -%}
-          <div class="tab-pane" id="{{ tag.name | replace:' ','-' }}-ref">
-            <h2 style="margin-top: 0px">Stuff tagged  with {{ tag.name }}</h2>
+        {%- for tag in grouptags -%}
+          <div class="tab-pane" id="{{ tag | replace:' ','-' }}-ref">
+            <h2 style="margin-top: 0px">Stuff tagged  with {{ tag }}</h2>
             <ul class="list-unstyled">
               {%- for document in alldocs -%}
-                {% if document.tags contains tag.name %}
+                {% if document.tags contains tag %}
                     <li style="line-height: 35px;"><a href="{{ site.BASE_PATH }}{{document.url}}">{{document.title}}</a><span class="text-muted">- {{ document.date | date: "%B %d, %Y" }}</span></li>
                 {% endif %}
               {%- endfor -%}

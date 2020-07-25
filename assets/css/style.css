@@ -299,3 +299,8 @@ ul.dropdown-menu>li>a>i.fa {
 	color: #C81927;
 	padding-left: 5px;
 }
+.carousel-btn {
+	height: 50px;
+	width: 50px;
+	font-size: 25px;
+}
