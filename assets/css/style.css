@@ -305,15 +305,24 @@ ul.dropdown-menu>li>a>i.fa {
 	font-size: 25px;
 }
 .err-page {
-	font-family: 'Courier New' !important;
+	font-family: 'Microsoft Sans Serif' !important;
+	line-height: normal;
 }
 .ie-font {
-	font-family: 'Courier New' !important;
+	font-family: 'Microsoft Sans Serif' !important;
+	line-height: normal;
+}
+.ie-link {
+	text-decoration: underline;
+	color: red;
+}
+.ie-link:hover {
+	color: red;
 }
 /*From https://stackoverflow.com/a/41411238*/
 .iehr {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	border: 0;
-	border-top: 2px solid rgba(0, 0, 0, 0.1);
+	border-top: 2px solid #c6c3c6;
   }
