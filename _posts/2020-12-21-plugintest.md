@@ -16,6 +16,10 @@ screenshots:
       title: larry
       external: true
 ---
+## Gists
+
+{% gist 41f6bceddee56e85a090fd2e94d1a844 %}
+
 ## Imgur
 
 {% imgur https://i.imgur.com/38bB9P4.png %}
