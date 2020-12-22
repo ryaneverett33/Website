@@ -1,54 +1,54 @@
 <!--sidebar.html-->
 <div id="sidebar-btnbar">
-	<div style="height: 75px; padding-top: 15px;">
-		<div style="position: absolute; left: 0px;">
-			<a href="/">
-				<button class="btn btn-outline-light" style="border: none; margin-left: 10px;">
-					<img src="/assets/media/profile.jpg" class="img-circle profile-img-sm img-fluid"/>
-					<h6 style="display: inline-block; margin-left: 5px;"> Home</h6>
-				</button>
-			</a>
-		</div>
-		<div style="position: absolute; right: 0px; margin-top: 5px;">
-			<button class="btn btn-outline-light" onclick="sidebarExpandBtn()" style="border: none; margin-right: 10px;">
-				<i class="fas fa-chevron-circle-down"></i> <h6 style="display: inline-block;"> Menu</h6>
-			</button>
-		</div>
-	</div>
-	<div id="sidebar-expand-menu" style='display:none;'>
-		<div id="contact-list" class="text-center">
-			<ul class="list-unstyled list-inline">
-				{% if site.author.github %}
-				<li style="display: inline-block;">
-					<a class="btn btn-default" href="https://github.com/{{ site.author.github }}" target="blank">
-						<i class="fab fa-github fa-lg"></i>
-					</a>
-				</li>
-				{% endif %}
-				{% if site.author.twitter %}
-				<li style="display: inline-block;">
-					<a class="btn btn-default" href="https://twitter.com/{{ site.author.twitter }}" target="blank">
-						<i class="fab fa-twitter fa-lg"></i>
-					</a>
-				</li>
-				{% endif %}
-				{% if site.author.email %}
-				<li style="display: inline-block;">
-					<a class="btn btn-default" href="mailto:{{ site.author.email }}" target="blank">
-						<i class="fas fa-envelope fa-lg"></i>
-					</a>
-				</li>
-				{% endif %}
-			</ul>
-		</div>
-		<ul class="list-group list-group-flush" style="list-style: none;">
-			<li><a href="{{ site.BASE_PATH}}/{{ site.about_path }}"><button class="sidebar-btn">About</button></a></li>
-			<li><a href="{{ site.BASE_PATH}}/{{ site.projects_path }}"><button class="sidebar-btn">Projects</button></a></li>
-			<li><a href="{{ site.BASE_PATH}}/{{ site.categories_path }}"><button class="sidebar-btn">Posts</button></a></li>
-			<li><a href="{{ site.BASE_PATH}}/{{ site.tags_path }}"><button class="sidebar-btn">Tags</button></a></li>
-		</ul>
-	</div>
-	
-	<!--end sidebar-sm.html-->
+    <div style="height: 75px; padding-top: 15px;">
+        <div style="position: absolute; left: 0px;">
+            <a href="/">
+                <button class="btn btn-outline-light" style="border: none; margin-left: 10px;">
+                    <img src="/assets/media/profile.jpg" class="img-circle profile-img-sm img-fluid"/>
+                    <h6 style="display: inline-block; margin-left: 5px;"> Home</h6>
+                </button>
+            </a>
+        </div>
+        <div style="position: absolute; right: 0px; margin-top: 5px;">
+            <button class="btn btn-outline-light" onclick="sidebarExpandBtn()" style="border: none; margin-right: 10px;">
+                <i class="fas fa-chevron-circle-down"></i> <h6 style="display: inline-block;"> Menu</h6>
+            </button>
+        </div>
+    </div>
+    <div id="sidebar-expand-menu" style='display:none;'>
+        <div id="contact-list" class="text-center">
+            <ul class="list-unstyled list-inline">
+                {% if site.author.github %}
+                <li style="display: inline-block;">
+                    <a class="btn btn-default" href="https://github.com/{{ site.author.github }}" target="blank">
+                        <i class="fab fa-github fa-lg"></i>
+                    </a>
+                </li>
+                {% endif %}
+                {% if site.author.twitter %}
+                <li style="display: inline-block;">
+                    <a class="btn btn-default" href="https://twitter.com/{{ site.author.twitter }}" target="blank">
+                        <i class="fab fa-twitter fa-lg"></i>
+                    </a>
+                </li>
+                {% endif %}
+                {% if site.author.email %}
+                <li style="display: inline-block;">
+                    <a class="btn btn-default" href="mailto:{{ site.author.email }}" target="blank">
+                        <i class="fas fa-envelope fa-lg"></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <ul class="list-group list-group-flush" style="list-style: none;">
+            <li><a href="{{ site.BASE_PATH}}/{{ site.about_path }}"><button class="sidebar-btn">About</button></a></li>
+            <li><a href="{{ site.BASE_PATH}}/{{ site.projects_path }}"><button class="sidebar-btn">Projects</button></a></li>
+            <li><a href="{{ site.BASE_PATH}}/{{ site.categories_path }}"><button class="sidebar-btn">Posts</button></a></li>
+            <li><a href="{{ site.BASE_PATH}}/{{ site.tags_path }}"><button class="sidebar-btn">Tags</button></a></li>
+        </ul>
+    </div>
+    
+    <!--end sidebar-sm.html-->
 </div>
 <!--<div class="sidebar-spacer"></div>-->

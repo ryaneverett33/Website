@@ -49,7 +49,7 @@ module Jekyll
       if split.length != 1
         raise "Invalid arguments"
       end
-      @raw_names = context[split[0]]
+      @raw_names = Helpers.resolve_context(context, split, 0)
     end
 
     def render(context)

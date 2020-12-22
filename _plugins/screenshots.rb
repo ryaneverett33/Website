@@ -26,8 +26,8 @@ module Jekyll
       if split.length != 2
         raise "Invalid arguments"
       end
-      @screenshots_arr = context[split[0]]
-      @project_name = context[split[1]]
+      @screenshots_arr = Helpers.resolve_context(context, split, 0)
+      @project_name = Helpers.resolve_context(context, split, 1)
     end
 
     def render(context)

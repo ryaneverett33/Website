@@ -13,8 +13,8 @@ Features:
 - Clicking a project category should set the url
     - Clicking a project and going back should show the same categories page
 - Screenshots plugin should be able to go fullscreen
-- Add compare plugin
-    - Should allow fullscreen
-    - Have two images; slider between the two
-    - https://github.com/zurb/twentytwenty
+- Add compare plugin                            /
+    - Should allow fullscreen                   ?
+    - Have two images; slider between the two   /
+    - https://github.com/zurb/twentytwenty      /
 - Add https://github.com/jekyll/jekyll-gist

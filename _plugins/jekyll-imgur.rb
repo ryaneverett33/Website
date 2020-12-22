@@ -8,17 +8,11 @@ module Jekyll
       @url = ""
     end
 
-    # Method to convert string to bool (which is dumb ruby doesn't have this in the first place)
-    # https://stackoverflow.com/a/36229316
-    def true?(obj)
-      obj.to_s.downcase == "true"
-    end
-
     # Assign instance variables their values from parsed args
     # If key is invalid, it's ignored
     def assign_key_value(key, value)
       if key == "show_info"
-        @show_info = true?(value)
+        @show_info = Helpers.parse_bool(value)
       elsif key == "title"
         @title = value
       end
