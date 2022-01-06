@@ -39,19 +39,9 @@ module Jekyll
       i = 0
       # assemble main carousel
       str += <<-HTML
-        <div id="#{@project_name.gsub " ", ""}Indicators" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-        HTML
-      while i < @screenshots_arr.length
-        str += <<-HTML
-            <li data-target="##{@project_name.gsub " ", ""}Indicators" data-slide-to="#{i}" #{if i == 0 then 'class="active"' end}></li>
-          HTML
-        i += 1
-      end
-      str += <<-HTML
-        </ol>
-        <div class="carousel-inner">
-        HTML
+        <div id="#{@project_name.gsub " ", ""}Indicators" class="carousel carousel-dark slide" style="padding-bottom: 15px;" data-bs-ride="carousel">
+          <div class="carousel-inner">
+      HTML
       i = 0
       for screenshot in @screenshots_arr
         str += <<-HTML
@@ -64,12 +54,12 @@ module Jekyll
         else
           url = "/assets/projects/#{@project_name}/screenshots/#{screenshot["img"]}"
           str += <<-HTML
-                    <img class="d-block w-100" src="#{URI::encode(url)}" alt="#{ordinalize(i).capitalize} slide">
+                    <img class="d-block w-100" src="#{url}" alt="#{ordinalize(i).capitalize} slide">
                   HTML
         end
         if screenshot["title"]
           str += <<-HTML
-                  <div class="carousel caption d-none d-md-block text-center">
+                  <div class="carousel-caption d-none d-md-block">
                     <h5>#{screenshot["title"]}</h5>
                   </div>
                   HTML
@@ -79,19 +69,30 @@ module Jekyll
       end
       str += <<-HTML
         </div>
-        <a class="carousel-control-prev" href="##{@project_name.gsub " ", ""}Indicators" role="button" data-slide="prev">
-          <button class="btn btn-dark carousel-btn" aria-hidden="true">
-          <i class="fas fa-chevron-left"></i>
-          </button>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="##{@project_name.gsub " ", ""}Indicators" role="button" data-slide="next">
-          <button class="btn btn-dark carousel-btn" aria-hidden="true">
-          <i class="fas fa-chevron-right"></i>
-          </button>
-          <span class="sr-only">Next</span>
-        </a>
+        <button class="carousel-control-prev" type="button" data-bs-target="##{@project_name.gsub " ", ""}Indicators" data-bs-slide="prev">
+          <span class="btn-dark carousel-btn" aria-hidden="true">
+            <i class="fas fa-chevron-left" style="padding-top: 12px"></i>
+          </span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="##{@project_name.gsub " ", ""}Indicators" data-bs-slide="next">
+          <span class="btn-dark carousel-btn" aria-hidden="true">
+            <i class="fas fa-chevron-right" style="padding-top: 12px"></i>
+          </span>
+          <span class="visually-hidden">Next</span>
+        </button>
         </div>
+        HTML
+      i = 0
+      str += "<div class=\"carousel-indicators\" style=\"position: relative; height: 25px;\">"
+      while i < @screenshots_arr.length
+        str += <<-HTML
+            <button type="button" data-bs-target="##{@project_name.gsub " ", ""}Indicators" data-bs-slide-to="#{i}" #{if i == 0 then 'class="active" aria-current="true"' end} aria-label="Slide #{i + 1}" style="background-color: #000;"></button>
+          HTML
+        i += 1
+        end
+        str += <<-HTML
+          </div>
         HTML
       str.gsub /^\s+/, "" # remove whitespaces from heredocs
       str

@@ -9,7 +9,7 @@ screenshots:
     - img: /assets/projects/dinodash/screenshots/main.jpg
       title: Dino Dash
       external: true
-    - img: /assets/projects/christmaspi/screenshots/setup_main.png
+    - img: /assets/projects/ChristmasPi/screenshots/setup_main.png
       title: ChristmasPi
       external: true
     - img: /assets/projects/larry/screenshots/main.PNG

@@ -5,7 +5,7 @@ body{
 }
 
 .sidebar {
-    position: absolute;
+    position: relative;
     top: 0px;
     left: 0px;
     height: 100%;
@@ -16,7 +16,7 @@ body{
 }
 .sidebar-color {
     background-color: #2c3e50;
-    z-index: -500;
+    /*z-index: -500;*/
 }
 
 .sidebar-header {
