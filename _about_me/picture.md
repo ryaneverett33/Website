@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Profile Picture
-tags: [about, world, thingy]
+tags: [about, profile]
 description: My profile picture
 ---
 
