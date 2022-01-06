@@ -9,7 +9,7 @@ demo_link: !!null
 category: !!null
 languages: [C#, C, HTML, CSS, JS]
 technologies: [ASP.Net, Raspberry Pi]
-main_screenshot: /assets/projects/christmaspi/screenshots/setup_main.png
+main_screenshot: /assets/projects/ChristmasPi/screenshots/setup_main.png
 screenshots: 
     - img: setup_hardware.png
       title: Setting up hardware

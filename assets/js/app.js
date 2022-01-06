@@ -35,6 +35,10 @@
 
     // sidebar-sm init
     $("#sidebar-expand-menu").hide();
+
+    if (document.getElementById("projects-pills-tab") != null) {
+      setActive(null);
+    }
   };
 
   // run init on document ready
@@ -48,4 +52,57 @@ function sidebarExpandBtn() {
     sidebar.show();
   else
     sidebar.hide();
+}
+function updateCarouselModal(carouselElement) {
+  console.log(`updating for ${carouselElement}`);
+  var carousel = document.getElementById(`${carouselElement}Indicators`);
+  var modalTitle = document.getElementById(`${carouselElement}fullScreenModalTitle`);
+  var modalImg = document.getElementById(`${carouselElement}fullScreenModalImg`);
+  var carouselItems = carousel.getElementsByClassName("carousel-item");
+  // Iterate through carouselItems and find active in classList
+
+  for (var i = 0; i < carouselItems.length; i++) {
+    var item = carouselItems[i];
+
+    if (item.classList.contains("active")) {
+      var imgElement = item.getElementsByTagName("img")[0];
+      var captionElement = item.getElementsByTagName("h5")[0];
+      console.log(imgElement);
+      console.log(captionElement);
+      modalImg.setAttribute("src", imgElement.getAttribute("src"));
+      console.log(`Image Element text: ${imgElement.textContent}`);
+      modalTitle.textContent = captionElement.textContent;
+    }
+  }
+}
+function setActive(newActive) {
+  var projectsTab = document.getElementById("projects-pills-tab");
+  
+  if (newActive == null) {
+    // Check if there's an active tab in the URL
+    // If so, update the tab view
+    var found = false;
+    if (window.location.hash !== "") {
+      var active = window.location.hash.split("#")[1];
+
+      for (var i = 0; i < projectsTab.children.length; i++) {
+        var tab = projectsTab.children[i];
+        var tabBtn = tab.children[0];
+
+        if (tabBtn.id.includes(active)) {
+          tabBtn.click();
+          found = true;
+          break;
+        }
+      }
+
+      if (!found) {
+        window.location.hash = "";
+      }
+    }
+  }
+  else {
+    // Set the active tab in the URL
+    window.location.hash = `#${newActive}`;
+  }
 }

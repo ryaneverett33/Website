@@ -12,15 +12,15 @@ group: navigation
 {% assign work_projects = work_projects | sort_natural:"title" %}
 {% assign personal_projects = personal_projects | sort_natural:"title" %}
 
-<ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+<ul class="nav nav-tabs mb-3" id="projects-pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="pills-personal-tab" data-bs-toggle="tab" data-bs-target="#pills-personal" role="tab" aria-controls="pills-personal" aria-selected="true">Personal Projects</button>
+        <button class="nav-link active" id="pills-personal-tab" data-bs-toggle="tab" data-bs-target="#pills-personal" role="tab" aria-controls="pills-personal" aria-selected="true" onclick="setActive('personal')">Personal Projects</button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-class-tab" data-bs-toggle="tab" data-bs-target="#pills-class" role="tab" aria-controls="pills-class" aria-selected="true">Class Projects</button>
+        <button class="nav-link" id="pills-class-tab" data-bs-toggle="tab" data-bs-target="#pills-class" role="tab" aria-controls="pills-class" aria-selected="true" onclick="setActive('class')">Class Projects</button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-work-tab" data-bs-toggle="tab" data-bs-target="#pills-work" role="tab" aria-controls="pills-work" aria-selected="true">Work Projects</button>
+        <button class="nav-link" id="pills-work-tab" data-bs-toggle="tab" data-bs-target="#pills-work" role="tab" aria-controls="pills-work" aria-selected="true" onclick="setActive('work')">Work Projects</button>
     </li>
 </ul>
 <div class="tab-content" id="pills-tabContent">

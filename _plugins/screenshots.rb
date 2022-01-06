@@ -37,11 +37,26 @@ module Jekyll
       end
       str = ""
       i = 0
+      carouselName = @project_name.gsub " ", ""
+
       # assemble main carousel
       str += <<-HTML
-        <div id="#{@project_name.gsub " ", ""}Indicators" class="carousel carousel-dark slide" style="padding-bottom: 15px;" data-bs-ride="carousel">
+        <div id="#{carouselName}Indicators" class="carousel carousel-dark slide" style="padding-bottom: 15px;" data-bs-ride="carousel">
           <div class="carousel-inner">
+            <div class="carousel-indicators" style="background: #b9bfc6; width: 100%; margin-bottom: 0; margin-left: 0;">
+              <button style="all: revert;" type="button" data-bs-toggle="modal" data-bs-target="##{carouselName}fullScreenModal" onclick="updateCarouselModal('#{carouselName}')"><i class="fas fa-expand-arrows-alt"></i></button>
       HTML
+
+      i = 0
+      while i < @screenshots_arr.length
+        str += <<-HTML
+            <button type="button" data-bs-target="##{carouselName}Indicators" data-bs-slide-to="#{i}" #{if i == 0 then 'class="active" aria-current="true"' end} aria-label="Slide #{i + 1}" style="background-color: #000;"></button>
+          HTML
+        i += 1
+        end
+        str += <<-HTML
+          </div>
+        HTML
       i = 0
       for screenshot in @screenshots_arr
         str += <<-HTML
@@ -69,13 +84,13 @@ module Jekyll
       end
       str += <<-HTML
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="##{@project_name.gsub " ", ""}Indicators" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="##{carouselName}Indicators" data-bs-slide="prev">
           <span class="btn-dark carousel-btn" aria-hidden="true">
             <i class="fas fa-chevron-left" style="padding-top: 12px"></i>
           </span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="##{@project_name.gsub " ", ""}Indicators" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="##{carouselName}Indicators" data-bs-slide="next">
           <span class="btn-dark carousel-btn" aria-hidden="true">
             <i class="fas fa-chevron-right" style="padding-top: 12px"></i>
           </span>
@@ -83,17 +98,21 @@ module Jekyll
         </button>
         </div>
         HTML
-      i = 0
-      str += "<div class=\"carousel-indicators\" style=\"position: relative; height: 25px;\">"
-      while i < @screenshots_arr.length
-        str += <<-HTML
-            <button type="button" data-bs-target="##{@project_name.gsub " ", ""}Indicators" data-bs-slide-to="#{i}" #{if i == 0 then 'class="active" aria-current="true"' end} aria-label="Slide #{i + 1}" style="background-color: #000;"></button>
-          HTML
-        i += 1
-        end
-        str += <<-HTML
+      str += <<-HTML
+        <div class="modal fade" id="#{carouselName}fullScreenModal" tabIndex="-1" aria-labeledby="##{carouselName}fullScreenModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="#{carouselName}fullScreenModalTitle">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <img src="#" id="#{carouselName}fullScreenModalImg" />
+              </div>
+            </div>
           </div>
-        HTML
+        </div>
+      HTML
       str.gsub /^\s+/, "" # remove whitespaces from heredocs
       str
     end
