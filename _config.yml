@@ -9,6 +9,7 @@ disqus: !!null
 google_analytics: !!null
 title: Ryan Everett
 host: 0.0.0.0
+url: http://changer098.duckdns.org
 
 defaults:
   -
@@ -22,7 +23,7 @@ author:
   name: Ryan Everett
   email: beebooboo@bop
   github: ryaneverett33
-  twitter: Changer098
+  mastodon: https://mastodon.social/@Changer098
   bio: I make stuffz
   email_md5: 726351295ec82e145928582f595aa3aa
   theme_link: https://github.com/Changer098/Website

@@ -6,13 +6,12 @@ tags: [ffmpeg, dovi-tool, hdr10, dolbyvision, video]
 fullview: true
 ---
 
-Some UHD Blu-Ray owners are in awkward position: they bought the Blu-Ray release of a movie only to find online streaming services to contain a "better" version than what they paid for. With the emergence of Dolby Vision, some UHD movies are being released to streaming services, or other digital outlets, with the new HDR information while the older Blu-Ray version is still stuck with HDR10. The Blu-Ray version offers a bunch of benefits over a streaming alternative -- such as higher bitrate video, lossless audio, and bonus features if you're into that sort of thing -- but the lack of Dolby Vision means that some movie watchers aren't getting the best experience.
+Some UHD Blu-Ray owners are in awkward position: they bought the Blu-Ray release of a movie only to find online streaming services to contain a "better" version than what they paid for. With the emergence of Dolby Vision, some UHD movies are being released to streaming services, or other digital outlets, with new HDR information while the older Blu-Ray versions are stuck with HDR10. Blu-Rays offer a bunch of benefits over their digital counterparts -- such as higher bitrate video, lossless audio, and bonus features (if you're into that sort of thing) -- but the lack of Dolby Vision means that some movie watchers aren't getting the best experience.
 
-Thankfully as community efforts around understanding and supporting Dolby Vision have progressed, it's now possible to get the best of both worlds. Specificially, we're going to take the Dolby Vision info from an online source and add to our Blu-Ray rip. With this method, you'll still get all of the benefits of a UHD Blu-Ray rip while also getting that extra Dolby Vision sweetness.
+Thankfully, as community efforts around understanding and supporting Dolby Vision have progressed, it's now possible to get the best of both worlds. Specifically, it's possible to take the Dolby Vision info from an online source and add it to a Blu-Ray rip. With this method, you'll still get all the benefits of a UHD Blu-Ray rip while also getting that extra Dolby Vision sweetness.
 
 ## Tools you'll need
 
-- MakeMKV if you haven't already ripped your Blu-Ray
 - [dovi-tool](https://github.com/quietvoid/dovi_tool) by quietvoid
 - [ffmpeg](https://ffmpeg.org/)
 - A Muxer
@@ -22,25 +21,25 @@ Thankfully as community efforts around understanding and supporting Dolby Vision
 
 ## Sources
 
-For this guide, we'll be looking at the movie [Arrival](https://www.amazon.com/Arrival-UHD-Digital-Combo-Blu-ray/dp/B01LTHYE0O/) which was distributed with a HDR10 source but is distributed [online](https://www.vudu.com/content/movies/details/title/826376) with Dolby Vision. We can confirm this by looking at the MediaInfo report of our rip:
+_NOTE: This guide will not be discussing how to obtain from an online source, but it should be fairly easy to do._
+
+For this guide, we'll be looking at the movie [Arrival](https://www.amazon.com/Arrival-UHD-Digital-Combo-Blu-ray/dp/B01LTHYE0O/) which was distributed with a HDR10 source but is distributed [online](https://www.vudu.com/content/movies/details/title/826376) with Dolby Vision. We can confirm this by looking at the [MediaInfo](https://mediaarea.net/en/MediaInfo) report of our rip:
 
 ![Arrival Blu-Ray rip Info](/assets/posts/2023-03-11/img/BluRay-MediaInfo.PNG "Arrival Blu-Ray rip Info")
 
-As you can see from above, the HDR format is `SMPTE ST 2086, HDR10 compatible` without any Dolby-Vision information. Compare the above to our below source which contains Dolby Vision Profile 5 information:
+As you can see from the above, the HDR format is `SMPTE ST 2086, HDR10 compatible` without any Dolby-Vision information. Compare the above to our online source below:
 
 ![Arrival Online Source Info](/assets/posts/2023-03-11/img/Profile5-MediaInfo.PNG "Arrival Online Source Info")
 
-From the online source, we see the HDR10 format as `Dolby Vision, Version 1.0, dvhe.05.06, BL+RPU` which translates to Dolby Vision Profile 5 for HEVC (`dvhe.05`). We can double-confirm this as containing Dolby Vision info by attempting to play with something that doesn't support Dolby Vision:
+From the online source, we see the HDR10 format as `Dolby Vision, Version 1.0, dvhe.05.06, BL+RPU` which translates to Dolby Vision Profile 5 for HEVC (`dvhe.05`). We can double-confirm this as containing Dolby Vision info by attempting to play it on something that doesn't support Dolby Vision:
 
 ![Online Source in VLC](/assets/posts/2023-03-11/img/VLC-Profile5.PNG "Online Source in VLC")
 
-As you can see from the VLC screenshot, the colors have a purple-ish tint to them. If the file had a HDR10 incompability, we would expect a light-blue washed-out tint instead. 
-
-This guide will not be discussing how to obtain an online source, but it should be fairly easy to do.
+As you can see from the VLC screenshot, the colors have a purple-ish tint to them. If the file had a HDR10 incompatibility, we would expect a light-blue washed-out tint instead. 
 
 ## Extracting and Injecting Dolby Vision
 
-Once you have your sources gathered, we can actually start extracting the Dolby Vision from our online source. In order to do that, we must first extract our video stream from our online source. In order to do that, we use `ffmpeg`. First find the video stream by probing the video:
+Once you have your sources gathered, we can actually start extracting the Dolby Vision metadata from our online source. In order to do that, we must first extract the video stream from our online source. In order to do that, we use `ffmpeg`. First find the video stream by probing the video:
 
 ```
 > ffprobe '.\Arrival - Profile 5.mkv'
@@ -87,7 +86,7 @@ frame=167417 fps=388 q=-1.0 Lsize=12303996kB time=01:56:22.51 bitrate=14435.2kbi
 video:12303996kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.000000%
 ```
 
-Once the video hasn't been extracted, we can then use it to extract the Dolby Vision metadata using quietvoid's excellent [dovi-tool](https://github.com/quietvoid/dovi_tool). Since we'll be adding this metadata to a HDR10 source, we need to make the metadata compatible. Specifically, we'll be converting from Profile 5 metadata to Profile 8.1 metadata.
+Once the video hasn't been extracted, we can then use it to extract the Dolby Vision metadata using quietvoid's excellent [dovi-tool](https://github.com/quietvoid/dovi_tool). Since we'll be adding this metadata to a HDR10 source, we need to make the metadata compatible. Specifically, we'll be converting from Profile 5 metadata to Profile 8.1 metadata which is backwards compatible with HDR10. One benefit to this is that the resultant video will still work with displays that don't support Dolby Vision.
 
 ```
 > dovi_tool.exe -m 2 extract-rpu .\profile5.hevc
@@ -130,9 +129,11 @@ Metadata will be skipped at the end to match video length
 Rewriting file with interleaved RPU NALs..
 ```
 
+Metadata from the online source might not match perfectly with the BluRay (see the incompatible length warning above) but should be okay for most cases.
+
 ## Re-authoring
 
-Once you have the injected HEVC file, you can re-mux back into a container of your choice. Since we have a raw HEVC file, we must mux into an intermediary container before we can mux our final product. In this way, the muxing step is at least a two step process.
+Once you have the injected HEVC file, you can re-mux back into a container of your choice. Since we have a raw HEVC file, we must first mux into an intermediary container before we can mux our final product. In this way, the muxing step is at least a two step process.
 
 ### Muxing with MKVToolNix
 
@@ -143,7 +144,7 @@ Muxing with the MKVToolNix GUI is fairly straight-forward. Simply use the `Multi
 It can also be done with the `mkvmerge` command:
 
 ```
-> mkvmerge.exe .\injected.hevc -o injected.mkv
+> mkvmerge.exe .\injected.hevc -o injected.mkv --default-duration 0:24000/1001p --fix-bitstream-timing-information 0:1
 mkvmerge v74.0.0 ('You Oughta Know') 64-bit
 '.\injected.hevc': Using the demultiplexer for the format 'HEVC/H.265'.
 '.\injected.hevc' track 0: Using the output module for the format 'HEVC/H.265 (unframed)'.
@@ -153,11 +154,17 @@ The cue entries (the index) are being written...
 Multiplexing took 27 minutes 16 seconds.
 ```
 
+~~In my limited experience, the MKV muxer sometimes produces a broken video stream when muxed into the final product. The instructions here are left for completeness, but it's recommended to use `tsMuxer` instead.~~
+
+Make sure to enable the `Fix bitstream timing info` option when using muxing:
+
+![Fix bitstream timing info](/assets/posts/2023-03-11/img/mkvmerge-fixbitstreaminfo.png "Fix bitstream timing info")
+
 ### Muxing with tsMuxer
 
 Muxing with the tsMuxer GUI is much the same as `MKVToolNix`
 
-![Muxing with MKVToolNix](/assets/posts/2023-03-11/img/mkvtoolnix-merge.PNG "Muxing with MKVToolNix")
+![Muxing with MKVToolNix](/assets/posts/2023-03-11/img/tsmuxer-merge.PNG "Muxing with MKVToolNix")
 
 ### Muxing with mp4muxer
 

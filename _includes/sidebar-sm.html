@@ -25,10 +25,10 @@
                     </a>
                 </li>
                 {% endif %}
-                {% if site.author.twitter %}
+                {% if site.author.mastodon %}
                 <li style="display: inline-block;">
-                    <a class="btn btn-default" href="https://twitter.com/{{ site.author.twitter }}" target="blank">
-                        <i class="fab fa-twitter fa-lg"></i>
+                    <a class="btn btn-default" href="{{ site.author.mastodon }}" target="blank">
+                        <i class="fab fa-mastodon fa-lg"></i>
                     </a>
                 </li>
                 {% endif %}

@@ -58,8 +58,8 @@ article .share .btn {
   -webkit-transition:color .2s ease-out, background 1s ease-in;
   transition:color .2s ease-out, background 1s ease-in;
 }
-#contact-list li:hover .fa-twitter,
-article .share .twitter:hover {
+#contact-list li:hover .fa-mastodon,
+article .share .mastodon:hover {
     color: #00ACEE;
     border-color: #00ACEE;
 }
