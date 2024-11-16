@@ -55,7 +55,7 @@ In order to convert the Profile 7 data to Profile 8, we turn to our good friend 
 
 In order to convert the Profile 7 metadata, we first need to extract the HEVC bitstream from our file.
 
-```
+```sh
 > ffmpeg -i '.\The Boy and the Heron_t01.mkv' -map 0:0 -vcodec copy video.hevc
   Stream #0:0(eng): Video: hevc (Main 10), yuv420p10le(tv, bt2020nc/bt2020/smpte2084), 3840x2160 [SAR 1:1 DAR 16:9], q=2-31, 23.98 fps, 23.98 tbr, 23.98 tbn
     Metadata:
@@ -73,7 +73,7 @@ video:73818345kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB mux
 
 Once the bitstream has been extracted, we can extract and convert the Dolby Vision metadata within it.
 
-```
+```sh
 > dovi_tool -m 2 extract-rpu .\video.hevc
 Reordering metadata... Done.
 ```
@@ -86,7 +86,7 @@ Now that we have the re-written metadata, we need to re-inject it back into our 
 
 In order to remove the Enhancement Layer, we can "demux" the original bitstream.
 
-```
+```sh
 > dovi_tool.exe demux .\video.hevc
 ```
 
@@ -94,7 +94,7 @@ This will produce two separate HEVC files: `BL.hevc` for the base video stream a
 
 With the base layer bitstream file, we can inject our newly converted metadata to make it a Profile 8 bitstream.
 
-```
+```sh
 > dovi_tool.exe inject-rpu -r .\RPU.bin -i .\BL.hevc -o profile8.hevc
 Parsing RPU file...
 Processing input video for frame order info...
@@ -107,7 +107,7 @@ Now that we have a Profile 8 bitstream, we need to re-mux it back into our origi
 
 In order to do this muxing, we need two more bits of info: the MaxCLL and MaxFALL values. You can grab this info by loading the original ripped file into MediaInfo and examining the video track. These values should be substituted into the below command for the `--max-content-light` and `max-frame-light` flags accordingly. While you're in MediaInfo, double check that the Mastering display luminance and the video frame rate are correct.
 
-```
+```sh
 > mkvmerge.exe -o .\profile8.mkv --default-duration 0:24000/1001p --fix-bitstream-timing-information 0:1 --colour-matrix 0:9 --colour-range 0:1 --colour-transfer-characteristics 0:16 --colour-primaries 0:9 --max-content-light 0:991 --max-frame-light 0:299 --max-luminance 0:1000.0 --min-luminance 0:0.0001 --chromaticity-coordinates 0:0.708,0.292,0.17,0.797,0.131,0.046 --white-colour-coordinates 0:0.3127,0.329 .\profile8.hevc
 mkvmerge v82.0 ('I'm The President') 64-bit
 '.\profile8.hevc': Using the demultiplexer for the format 'HEVC/H.265'.
@@ -122,7 +122,7 @@ _NOTE: The above command targets: bt.2020 color primaries, PQ transfer coefficie
 
 Once we have the `profile8.mkv` intermediary file, we can perform the final mux back with the ripped file.
 
-```
+```sh
 > ffmpeg -i '.\The Boy and the Heron_t01.mkv' -i .\profile8.mkv -i -map 1:0 -map 0:a -map 0:s -codec copy 'The Boy and the Heron - HDR.mkv'
   Stream #0:0(eng): Video: hevc (Main 10), yuv420p10le(tv, bt2020nc/bt2020/smpte2084), 3840x2160 [SAR 1:1 DAR 16:9], 23.98 fps, 23.98 tbr, 1k tbn
     Metadata:
